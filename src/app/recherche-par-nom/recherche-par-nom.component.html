@@ -1,0 +1,36 @@
+<div class="container">
+
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label for="nomMoto">Nom Moto en tapant</label>
+            <input id="nomMoto" #nomMoto [(ngModel)]="searchTerm" name="searchTerm" class="form-control" placeholder="Entrez le nom de la moto...">
+        </div>
+    </form>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date Création</th>
+                        <th>Type</th> <!-- Adjusted from Catégorie to Type -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let moto of motos | filter:searchTerm">
+                        <td>{{moto.idMoto}}</td>
+                        <td>{{moto.nomMoto}}</td>
+                        <td>{{moto.prixMoto}}</td>
+                        <td>{{moto.dateCreation | date:'dd/MM/yyyy'}}</td>
+                        <td>{{moto.type?.nomType}}</td> <!-- Adjusted from categorie to type -->
+                        <!-- <td><a class="btn btn-danger" (click)="supprimerMoto(moto)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateMoto',moto.idMoto]">Modifier</a></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
